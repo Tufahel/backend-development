@@ -1,5 +1,6 @@
-const fs = require('fs');
+// const fs = require('fs');
 
+const http = require('http');    
 // fs.writeFile("hello.txt", "hey kaise ho", function(err){
 //     if(err) console.error(err);
 //     else console.log("done");
@@ -30,7 +31,13 @@ const fs = require('fs');
 //     else console.log("done");
 // })
 
-fs.readFile('./hello.txt', 'utf8' , (err, data) => {
-    if (err) throw err;
-    console.log('kukku rukku: ',data);
-}); 
+// fs.readFile('./hello.txt', 'utf8' , (err, data) => {
+//     if (err) throw err;
+//     console.log('kukku rukku: ',data);
+// }); 
+
+const server = http.createServer(function(req, res){
+    res.end("hello world");
+})
+
+server.listen(3000);

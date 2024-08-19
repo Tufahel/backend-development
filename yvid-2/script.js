@@ -30,7 +30,7 @@ const fs = require('fs');
 //     else console.log("done");
 // })
 
-// fs.readFile('./hello.txt', 'utf8' , (err, data) => {
-//     if (err) throw err;
-//     console.log('kukku rukku: ',data);
-// }); 
+fs.readFile('./hello.txt', 'utf8' , (err, data) => {
+    if (err) throw err;
+    console.log('kukku rukku: ',data);
+}); 

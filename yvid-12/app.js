@@ -1,20 +1,20 @@
 const express = require("express");
 const app = express();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const cookieParser = require("cookie-parser");
 
-// $2b$10$NESd7o79YKjJvLj2jJ9Che/Dc83kUb6ozMK.BHiEJULWIiCOScviq
-// ghiellei
+app.use(cookieParser());
 
 app.get("/", function(req, res) {
-    // bcrypt.genSalt(10, function(err, salt) {
-    //     bcrypt.hash("ghiellei", salt, function(err, hash) {
-    //         console.log(hash)
-    //     });
-    // });
+    let token = jwt.sign({email: "tufahel@example.com"}, "secret")
+   res.cookie("token", token);
+   res.send("done")
+})
 
-    bcrypt.compare("ghiellei", "$2b$10$NESd7o79YKjJvLj2jJ9Che/Dc83kUb6ozMK.BHiEJULWIiCOScviq", function(err, result) {
-        console.log(result);
-    });
+app.get("/read", function(req, res) {
+    let data = jwt.verify(req.cookies.token, "secret");
+    console.log(data);
 })
 
 app.listen(3000);

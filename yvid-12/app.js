@@ -1,17 +1,20 @@
-const cookieParser = require('cookie-parser');
 const express = require("express");
 const app = express();
+const bcrypt = require('bcrypt');
 
-app.use(cookieParser());
+// $2b$10$NESd7o79YKjJvLj2jJ9Che/Dc83kUb6ozMK.BHiEJULWIiCOScviq
+// ghiellei
 
 app.get("/", function(req, res) {
-    res.cookie("name", "Tufahel");
-    res.send("done");
-})
+    // bcrypt.genSalt(10, function(err, salt) {
+    //     bcrypt.hash("ghiellei", salt, function(err, hash) {
+    //         console.log(hash)
+    //     });
+    // });
 
-app.get("/read", function(req, res) {
-    console.log(req.cookies);
-    res.send("read page");
+    bcrypt.compare("ghiellei", "$2b$10$NESd7o79YKjJvLj2jJ9Che/Dc83kUb6ozMK.BHiEJULWIiCOScviq", function(err, result) {
+        console.log(result);
+    });
 })
 
 app.listen(3000);
